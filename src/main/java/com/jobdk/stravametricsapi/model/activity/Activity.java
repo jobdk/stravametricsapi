@@ -1,4 +1,4 @@
-package com.jobdk.stravametricsapi.model;
+package com.jobdk.stravametricsapi.model.activity;
 
 import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
@@ -137,7 +137,7 @@ public class Activity implements Serializable {
   private Integer photoCount;
 
   @JsonProperty("map")
-  private com.jobdk.stravametricsapi.model.Map map;
+  private com.jobdk.stravametricsapi.model.activity.Map map;
 
   @JsonProperty("trainer")
   private Boolean trainer;
@@ -249,7 +249,7 @@ public class Activity implements Serializable {
       Integer commentCount,
       Integer athleteCount,
       Integer photoCount,
-      com.jobdk.stravametricsapi.model.Map map,
+      com.jobdk.stravametricsapi.model.activity.Map map,
       Boolean trainer,
       Boolean commute,
       Boolean manual,

@@ -1,4 +1,4 @@
-package com.jobdk.stravametricsapi.model;
+package com.jobdk.stravametricsapi.model.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

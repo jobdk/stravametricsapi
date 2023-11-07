@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.jobdk.stravametricsapi.model.activity.Activity;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 class ActivityTest {
 
   String json =
-          """
+      """
                    {
                       "resource_state": 2,
                       "athlete": {

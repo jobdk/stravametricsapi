@@ -10,7 +10,7 @@ import static org.springframework.util.ResourceUtils.getFile;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jobdk.stravametricsapi.config.StravaConfigProperties;
-import com.jobdk.stravametricsapi.model.Activity;
+import com.jobdk.stravametricsapi.model.activity.Activity;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,6 +29,7 @@ import org.springframework.web.client.RestTemplate;
 @TestPropertySource(locations = "classpath:test.properties")
 class ActivityRetrievalServiceTest {
   @Mock RestTemplate restTemplateMock;
+  @Mock AuthTokenRefresherService authTokenRefresherService;
   @Mock ResponseEntity<List<Activity>> responseEntityMockFifty;
   @Mock ResponseEntity<List<Activity>> responseEntityMockForty;
   @Mock ResponseEntity<List<Activity>> getResponseEntityMockLastRetrieval;
@@ -41,7 +42,9 @@ class ActivityRetrievalServiceTest {
 
   @BeforeEach
   void beforeEach() {
-    unitUnderTest = new ActivityRetrievalService(restTemplateMock, stravaConfigPropertiesMock);
+    unitUnderTest =
+        new ActivityRetrievalService(
+            restTemplateMock, stravaConfigPropertiesMock, authTokenRefresherService);
   }
 
   @Test
