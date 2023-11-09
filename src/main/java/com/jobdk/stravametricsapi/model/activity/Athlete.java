@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @JsonPropertyOrder({"id", "resource_state"})
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Athlete implements Serializable {
+
+  private static final long serialVersionUID = 7427781649520850142L;
 
   @JsonProperty("id")
   private Integer id;
@@ -23,16 +23,4 @@ public class Athlete implements Serializable {
   private Integer resourceState;
 
   @JsonIgnore private Map<String, Object> additionalProperties = new LinkedHashMap<>();
-
-  private static final long serialVersionUID = 7427781649520850142L;
-
-  /**
-   * @param resourceState
-   * @param id
-   */
-  public Athlete(Integer id, Integer resourceState) {
-    super();
-    this.id = id;
-    this.resourceState = resourceState;
-  }
 }

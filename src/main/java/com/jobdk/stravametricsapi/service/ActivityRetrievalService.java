@@ -1,11 +1,10 @@
 package com.jobdk.stravametricsapi.service;
 
 import com.jobdk.stravametricsapi.config.StravaConfigProperties;
+import com.jobdk.stravametricsapi.exception.NoActivitiesFoundException;
 import com.jobdk.stravametricsapi.model.activity.Activity;
 import java.text.MessageFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -24,73 +23,92 @@ public class ActivityRetrievalService {
   private final RestTemplate restTemplate;
   private final StravaConfigProperties stravaConfigProperties;
   private final AuthTokenRefresherService authTokenRefresherService;
-
-  private List<Activity> activities =
-      new ArrayList<>(); // TODO: could be added to json file without loading it all or mongo db
+  private final ActivityRepository activityRepository;
 
   public ActivityRetrievalService(
       RestTemplate restTemplate,
       StravaConfigProperties stravaConfigProperties,
-      AuthTokenRefresherService authTokenRefresherService) {
+      AuthTokenRefresherService authTokenRefresherService,
+      ActivityRepository activityRepository) {
     this.restTemplate = restTemplate;
     this.stravaConfigProperties = stravaConfigProperties;
     this.authTokenRefresherService = authTokenRefresherService;
+    this.activityRepository = activityRepository;
   }
 
-  public List<Activity> getAllActivities() {
+  private static NoActivitiesFoundException getNoActivitiesFoundException() {
+    return new NoActivitiesFoundException("No activities in database");
+  }
+
+  private static Optional<Long> createEpochTime(Date dateOfLastRetrieval, long elapsedTime) {
+    return Optional.of(dateOfLastRetrieval.getTime() / 1000 + elapsedTime);
+  }
+
+  /** Gets all activities and stores them in mongo db */
+  public List<Activity> getAllActivitiesFromStrava() {
     return getActivities(Optional.empty());
   }
 
-  public List<Activity> getActivitiesAfterLastRetrieval(
-      String dateOfLastRetrieval, long elapsedTime) {
-    return getActivities(getEpochTime(dateOfLastRetrieval, elapsedTime));
+  public List<Activity> getAllActivitiesFromDatabase() {
+    return retrieveAllActivitiesFromDatabase();
   }
 
-  private Optional<Long> getEpochTime(String dateOfLastRetrieval, long elapsedTime) {
+  /** Gets the newest activities and stores them to mongodb */
+  public List<Activity> updateActivities() {
+    Optional<Activity> firstActivity =
+        activityRepository
+            .findActivitiesByOrderByStartDateDesc()
+            .flatMap(activities -> activities.stream().findFirst());
+
+    firstActivity.ifPresentOrElse(
+        activity -> getActivities(getEpochTime(activity.getStartDate(), activity.getElapsedTime())),
+        () -> {
+          throw getNoActivitiesFoundException();
+        });
+
+    return retrieveAllActivitiesFromDatabase();
+  }
+
+  private List<Activity> retrieveAllActivitiesFromDatabase() {
+    return activityRepository
+        .findActivitiesByOrderByStartDateDesc()
+        .orElseThrow(ActivityRetrievalService::getNoActivitiesFoundException);
+  }
+
+  private Optional<Long> getEpochTime(Date dateOfLastRetrieval, long elapsedTime) {
     if (dateOfLastRetrieval != null) {
       try {
         return createEpochTime(dateOfLastRetrieval, elapsedTime);
       } catch (Exception e) {
         LOG.error(
-            MessageFormat.format(
-                "Could not parse dateOfLastRetrieval: {0}",
-                dateOfLastRetrieval)); // TODO: Exception handling
+            MessageFormat.format("Could not parse dateOfLastRetrieval: {0}", dateOfLastRetrieval));
       }
     }
     return Optional.empty();
   }
 
-  private static Optional<Long> createEpochTime(String dateOfLastRetrieval, long elapsedTime)
-      throws ParseException {
-    return Optional.of(
-        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(dateOfLastRetrieval).getTime() / 1000
-            + elapsedTime);
-  }
-
-  private List<Activity> getActivities(Optional<Long> dateOfLastRetrieval) {
+  private List<Activity> getActivities(Optional<Long> dateOfLastRetrieval) { // TODO: parallelize
     int page = 1;
     while (true) {
-      List<Activity> result = getLastFiftyActivities(page, dateOfLastRetrieval);
-      activities.addAll(result);
-      if (result.size() < 50) {
-        break;
-      }
+      Optional<List<Activity>> result = getLastFiftyActivities(page, dateOfLastRetrieval);
+      result.ifPresent(activityRepository::saveAll);
+      if (result.isEmpty() || result.get().size() < 50) break;
       page++;
     }
-    return activities;
+    return retrieveAllActivitiesFromDatabase();
   }
 
-  private List<Activity> getLastFiftyActivities(int page, Optional<Long> dateOfLastRetrieval) {
-
+  private Optional<List<Activity>> getLastFiftyActivities(
+      int page, Optional<Long> dateOfLastRetrieval) {
     try {
-      return retrieveActivities(page, dateOfLastRetrieval);
+      return Optional.ofNullable(retrieveActivities(page, dateOfLastRetrieval));
     } catch (HttpClientErrorException.Unauthorized e) {
       LOG.error("Could not retrieve activities from Strava API", e);
       authTokenRefresherService.refreshToken();
-      return retrieveActivities(page, dateOfLastRetrieval);
+      return Optional.ofNullable(retrieveActivities(page, dateOfLastRetrieval));
     } catch (Exception e) {
       LOG.error("Could not retrieve activities from Strava API", e);
-      return List.of();
+      return Optional.empty();
     }
   }
 
