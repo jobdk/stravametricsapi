@@ -2,12 +2,16 @@ package com.jobdk.stravametricsapi.model.activity;
 
 import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @JsonPropertyOrder({
   "resource_state",
@@ -62,10 +66,16 @@ import lombok.Setter;
   "total_photo_count",
   "has_kudoed"
 })
-@Getter
-@Setter
+@Data
+@Document
 @NoArgsConstructor
 public class Activity implements Serializable {
+
+  private static final long serialVersionUID = -7804857919967216209L;
+
+  @Id
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("resource_state")
   private Integer resourceState;
@@ -97,14 +107,14 @@ public class Activity implements Serializable {
   @JsonProperty("workout_type")
   private String workoutType;
 
-  @JsonProperty("id")
-  private Long id;
-
   @JsonProperty("start_date")
-  private String startDate;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+  @Indexed(direction = IndexDirection.DESCENDING)
+  private Date startDate;
 
   @JsonProperty("start_date_local")
-  private String startDateLocal;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+  private Date startDateLocal;
 
   @JsonProperty("timezone")
   private String timezone;
@@ -221,113 +231,4 @@ public class Activity implements Serializable {
   private Boolean hasKudoed;
 
   @JsonIgnore private Map<String, Object> additionalProperties = new LinkedHashMap<>();
-
-  private static final long serialVersionUID = -7804857919967216209L;
-
-  // SuppressWarnings("java:S107")
-  public Activity(
-      Integer resourceState,
-      Athlete athlete,
-      String name,
-      Double distance,
-      Integer movingTime,
-      Integer elapsedTime,
-      Double totalElevationGain,
-      String type,
-      String sportType,
-      String workoutType,
-      Long id,
-      String startDate,
-      String startDateLocal,
-      String timezone,
-      Double utcOffset,
-      String locationCity,
-      String locationState,
-      String locationCountry,
-      Integer achievementCount,
-      Integer kudosCount,
-      Integer commentCount,
-      Integer athleteCount,
-      Integer photoCount,
-      com.jobdk.stravametricsapi.model.activity.Map map,
-      Boolean trainer,
-      Boolean commute,
-      Boolean manual,
-      Boolean _private,
-      String visibility,
-      Boolean flagged,
-      Long gearId,
-      List<Double> startLatlng,
-      List<Double> endLatlng,
-      Double averageSpeed,
-      Double maxSpeed,
-      Double averageCadence,
-      Integer averageTemp,
-      Boolean hasHeartrate,
-      Double averageHeartrate,
-      Double maxHeartrate,
-      Boolean heartrateOptOut,
-      Boolean displayHideHeartrateOption,
-      Double elevHigh,
-      Double elevLow,
-      Long uploadId,
-      String uploadIdStr,
-      String externalId,
-      Boolean fromAcceptedTag,
-      Integer prCount,
-      Integer totalPhotoCount,
-      Boolean hasKudoed) {
-    super();
-    this.resourceState = resourceState;
-    this.athlete = athlete;
-    this.name = name;
-    this.distance = distance;
-    this.movingTime = movingTime;
-    this.elapsedTime = elapsedTime;
-    this.totalElevationGain = totalElevationGain;
-    this.type = type;
-    this.sportType = sportType;
-    this.workoutType = workoutType;
-    this.id = id;
-    this.startDate = startDate;
-    this.startDateLocal = startDateLocal;
-    this.timezone = timezone;
-    this.utcOffset = utcOffset;
-    this.locationCity = locationCity;
-    this.locationState = locationState;
-    this.locationCountry = locationCountry;
-    this.achievementCount = achievementCount;
-    this.kudosCount = kudosCount;
-    this.commentCount = commentCount;
-    this.athleteCount = athleteCount;
-    this.photoCount = photoCount;
-    this.map = map;
-    this.trainer = trainer;
-    this.commute = commute;
-    this.manual = manual;
-    this._private = _private;
-    this.visibility = visibility;
-    this.flagged = flagged;
-    this.gearId = gearId;
-    this.startLatlng = startLatlng;
-    this.endLatlng = endLatlng;
-    this.averageSpeed = averageSpeed;
-    this.maxSpeed = maxSpeed;
-    this.averageCadence = averageCadence;
-    this.averageTemp = averageTemp;
-    this.hasHeartrate = hasHeartrate;
-    this.averageHeartrate = averageHeartrate;
-    this.maxHeartrate = maxHeartrate;
-    this.heartrateOptOut = heartrateOptOut;
-    this.displayHideHeartrateOption = displayHideHeartrateOption;
-    this.elevHigh = elevHigh;
-    this.elevLow = elevLow;
-    this.uploadId = uploadId;
-    this.uploadIdStr = uploadIdStr;
-    this.externalId = externalId;
-    this.fromAcceptedTag = fromAcceptedTag;
-    this.prCount = prCount;
-    this.totalPhotoCount = totalPhotoCount;
-    this.hasKudoed = hasKudoed;
-  }
 }
