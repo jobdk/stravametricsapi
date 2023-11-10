@@ -1,4 +1,4 @@
-package com.jobdk.stravametricsapi.service;
+package com.jobdk.stravametricsapi.repository;
 
 import com.jobdk.stravametricsapi.model.activity.Activity;
 import java.util.List;

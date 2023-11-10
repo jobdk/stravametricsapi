@@ -3,6 +3,7 @@ package com.jobdk.stravametricsapi.service;
 import com.jobdk.stravametricsapi.config.StravaConfigProperties;
 import com.jobdk.stravametricsapi.exception.NoActivitiesFoundException;
 import com.jobdk.stravametricsapi.model.activity.Activity;
+import com.jobdk.stravametricsapi.repository.ActivityRepository;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;

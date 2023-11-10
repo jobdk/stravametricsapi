@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jobdk.stravametricsapi.config.StravaConfigProperties;
 import com.jobdk.stravametricsapi.exception.NoActivitiesFoundException;
 import com.jobdk.stravametricsapi.model.activity.Activity;
+import com.jobdk.stravametricsapi.repository.ActivityRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +144,7 @@ class ActivityRetrievalServiceTest {
   }
 
   @Test
-  void testGetAllActivitiesFromDatabase() throws IOException {
+  void testGetAllActivitiesFromDatabase() {
     // Arrange
     when(activityRepositoryMock.findActivitiesByOrderByStartDateDesc())
         .thenReturn(Optional.of(fiftyList));
