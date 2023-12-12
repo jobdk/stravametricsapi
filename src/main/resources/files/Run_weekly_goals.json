@@ -1,0 +1,356 @@
+[
+  {
+    "week": 0,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 1
+  },
+  {
+    "week": 1,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 1
+  },
+  {
+    "week": 2,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 1
+  },
+  {
+    "week": 3,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 1
+  },
+  {
+    "week": 4,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 1
+  },
+  {
+    "week": 5,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 2
+  },
+  {
+    "week": 6,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 2
+  },
+  {
+    "week": 7,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 2
+  },
+  {
+    "week": 8,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 2
+  },
+  {
+    "week": 9,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 3
+  },
+  {
+    "week": 10,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 3
+  },
+  {
+    "week": 11,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 3
+  },
+  {
+    "week": 12,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 3
+  },
+  {
+    "week": 13,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 4
+  },
+  {
+    "week": 14,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 4
+  },
+  {
+    "week": 15,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 4
+  },
+  {
+    "week": 16,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 4
+  },
+  {
+    "week": 17,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 4
+  },
+  {
+    "week": 18,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 5
+  },
+  {
+    "week": 19,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 5
+  },
+  {
+    "week": 20,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 5
+  },
+  {
+    "week": 21,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 5
+  },
+  {
+    "week": 22,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 6
+  },
+  {
+    "week": 23,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 6
+  },
+  {
+    "week": 24,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 6
+  },
+  {
+    "week": 25,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 6
+  },
+  {
+    "week": 26,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 6
+  },
+  {
+    "week": 27,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 7
+  },
+  {
+    "week": 28,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 7
+  },
+  {
+    "week": 29,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 7
+  },
+  {
+    "week": 30,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 7
+  },
+  {
+    "week": 31,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 8
+  },
+  {
+    "week": 32,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 8
+  },
+  {
+    "week": 33,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 8
+  },
+  {
+    "week": 34,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 8
+  },
+  {
+    "week": 35,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 9
+  },
+  {
+    "week": 36,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 9
+  },
+  {
+    "week": 37,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 9
+  },
+  {
+    "week": 38,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 9
+  },
+  {
+    "week": 39,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 10
+  },
+  {
+    "week": 40,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 10
+  },
+  {
+    "week": 41,
+    "totalAmount": 0,
+    "year": 2023,
+    "month": 10
+  },
+  {
+    "week": 42,
+    "totalAmount": 50,
+    "year": 2023,
+    "month": 10
+  },
+  {
+    "week": 43,
+    "totalAmount":50,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 44,
+    "totalAmount": 20,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 45,
+    "totalAmount": 60,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 46,
+    "totalAmount": 100,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 47,
+    "totalAmount": 70,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 48,
+    "totalAmount": 40,
+    "year": 2023,
+    "month": 11
+  },
+  {
+    "week": 49,
+    "totalAmount": 100,
+    "year": 2023,
+    "month": 12
+  },
+  {
+    "week": 50,
+    "totalAmount": 100,
+    "year": 2023,
+    "month": 12
+  },
+  {
+    "week": 51,
+    "totalAmount": 100,
+    "year": 2023,
+    "month": 12
+  },
+  {
+    "week": 52,
+    "totalAmount": 30,
+    "year": 2023,
+    "month": 12
+  },
+  {
+    "week": 1,
+    "totalAmount": 50,
+    "year": 2024,
+    "month": 1
+  },
+  {
+    "week": 2,
+    "totalAmount": 100,
+    "year": 2024,
+    "month": 1
+  },
+  {
+    "week": 3,
+    "totalAmount": 100,
+    "year": 2024,
+    "month": 1
+  },
+  {
+    "week": 4,
+    "totalAmount": 100,
+    "year": 2024,
+    "month": 1
+  },
+  {
+    "week": 5,
+    "totalAmount": 100,
+    "year": 2024,
+    "month": 2
+  },
+  {
+    "week": 6,
+    "totalAmount": 100,
+    "year": 2024,
+    "month": 2
+  }
+]

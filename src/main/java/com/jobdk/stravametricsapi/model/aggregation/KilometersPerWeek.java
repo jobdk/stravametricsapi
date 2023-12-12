@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class KilometersPerWeek {
-  private String week;
-  private String month;
-  private String year;
-  private String totalAmount;
+  private int week;
+  private int month;
+  private int year;
+  private Double totalAmount;
 }

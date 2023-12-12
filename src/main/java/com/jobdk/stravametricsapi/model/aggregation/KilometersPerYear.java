@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class KilometersPerYear {
-  @Id private String year;
-  private String totalAmount;
+  @Id private int year;
+  private Double totalAmount; // TODO: to Long -> all
 }
